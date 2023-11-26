@@ -5,9 +5,9 @@ import Main from "../Layout/Main/Main";
 import Home from "../Pages/Home/Home/Home";
 import Error from "../Pages/Error/Error";
 import SignIn from "../Pages/SignIn/SignIn";
-import SignUp from "../Pages/SignUp/SignUp";
-import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+import SignUp from "../Pages/SignUp/SignUp"; 
 import PrivateRoutes from "./PrivateRoutes";
+import Dashboard from "../Layout/Dashboard";
 
 const router = createBrowserRouter([
     {

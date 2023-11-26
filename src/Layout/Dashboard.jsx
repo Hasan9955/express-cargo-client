@@ -5,9 +5,9 @@ import Drawer from '../Components/Drawer'
 const Dashboard = () => {
 
     return (
-        <div className=" ">
+        <div className="flex">
             <Drawer></Drawer>
-            <div>
+            <div className="flex-1">
                 <Outlet></Outlet>
             </div>
         </div>

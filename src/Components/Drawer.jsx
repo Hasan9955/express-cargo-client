@@ -1,16 +1,18 @@
 import { Link, NavLink } from "react-router-dom";
-import { FaHome, FaList,  FaUsers, FaBox, FaParachuteBox } from "react-icons/fa";
+import { FaHome, FaList, FaUsers, FaBox, FaParachuteBox } from "react-icons/fa";
 import { MdDeliveryDining } from "react-icons/md";
 import { TbStarsFilled } from "react-icons/tb";
-import useAuth from "../Hookes/useAuth";
+import useAuth from "../Hooks/useAuth";
+import useAdmin from "../Hooks/useAdmin";
+import useDeliverer from "../Hooks/useDeliverer";
 
 
 
 const Drawer = () => {
 
     const { user } = useAuth();
-    const isAdmin = false;
-    const isDeliverer = false;
+    const [isAdmin] = useAdmin();
+    const [isDeliverer] = useDeliverer(); 
 
     return (
         <div>
@@ -30,90 +32,90 @@ const Drawer = () => {
                         </Link>
                         <ul className="menu uppercase text-md">
                             {/* Admin routes */}
-                        {
-                            user && isAdmin && !isDeliverer && <div>
-                              
-                            <li>
-                                <NavLink to='/dashboard/adminHome'>
-                                    <FaHome className="text-2xl"></FaHome> Admin Home
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/dashboard/manageItems'>
-                                    <FaList className="text-2xl"></FaList> All Parcels
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/dashboard/manageBookings'>
-                                    <MdDeliveryDining className="text-2xl"></MdDeliveryDining> All  Delivery Men
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/dashboard/users'>
-                                    <FaUsers className="text-2xl"></FaUsers> all users
-                                </NavLink>
-                            </li> 
-                            </div>
-                        }
+                            {
+                                user && isAdmin && !isDeliverer && <div>
 
-                        {/* Deliverer routes */}
+                                    <li>
+                                        <NavLink to='/dashboard/adminHome'>
+                                            <FaHome className="text-2xl"></FaHome> Admin Home
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to='/dashboard/manageItems'>
+                                            <FaList className="text-2xl"></FaList> All Parcels
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to='/dashboard/manageBookings'>
+                                            <MdDeliveryDining className="text-2xl"></MdDeliveryDining> All  Delivery Men
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to='/dashboard/users'>
+                                            <FaUsers className="text-2xl"></FaUsers> all users
+                                        </NavLink>
+                                    </li>
+                                </div>
+                            }
+
+                            {/* Deliverer routes */}
 
 
-                        {
-                            user && isDeliverer && !isAdmin && <div>
-                              
-                            <li>
-                                <NavLink to='/dashboard/delivererHome'>
-                                    <FaHome className="text-2xl"></FaHome> Deliverer Home
-                                </NavLink>
-                            </li>
-                            
-                            <li>
-                                <NavLink to='/dashboard/deliveryList'>
-                                    <FaList className="text-2xl"></FaList> My Delivery List
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/dashboard/reviewList'>
-                                    <TbStarsFilled className="text-2xl"></TbStarsFilled> My Reviews
-                                </NavLink>
-                            </li> 
-                            </div>
-                        }
+                            {
+                                user && isDeliverer && !isAdmin && <div>
 
-                        {/* user routes */}
+                                    <li>
+                                        <NavLink to='/dashboard/userProfile'>
+                                            <FaHome className="text-2xl"></FaHome> Deliverer Home
+                                        </NavLink>
+                                    </li>
 
-                        
-                        {
-                            user && !isAdmin && !isDeliverer && <div>
-                              
-                            <li>
-                                <NavLink to='/dashboard/adminHome'>
-                                    <FaHome className="text-2xl"></FaHome> My Profile
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/dashboard/addItems'>
-                                    <FaParachuteBox className="text-2xl"></FaParachuteBox >  Book a Parcel
-                                </NavLink>
-                            </li> 
-                            <li>
-                                <NavLink to='/dashboard/deliveryList'>
-                                    <FaBox  className="text-2xl"></FaBox > My Parcels
-                                </NavLink>
-                            </li> 
-                            </div>
-                        }
+                                    <li>
+                                        <NavLink to='/dashboard/deliveryList'>
+                                            <FaList className="text-2xl"></FaList> My Delivery List
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to='/dashboard/reviewList'>
+                                            <TbStarsFilled className="text-2xl"></TbStarsFilled> My Reviews
+                                        </NavLink>
+                                    </li>
+                                </div>
+                            }
+
+                            {/* user routes */}
+
+
+                            {
+                                user && !isAdmin && !isDeliverer && <div>
+
+                                    <li>
+                                        <NavLink to='/dashboard/userProfile'>
+                                            <FaHome className="text-2xl"></FaHome> My Profile
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to='/dashboard/bookParcel'>
+                                            <FaParachuteBox className="text-2xl"></FaParachuteBox >  Book a Parcel
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to='/dashboard/deliveryList'>
+                                            <FaBox className="text-2xl"></FaBox > My Parcels
+                                        </NavLink>
+                                    </li>
+                                </div>
+                            }
 
                             <div className="divider"></div>
 
 
                             {/* common links for all user */}
                             <NavLink to='/'>
-                            <button className="btn bg-[#F5793B] text-white w-full">
-                                <FaHome className="text-2xl"></FaHome>Go Home
-                            </button>
-                                </NavLink>
+                                <button className="btn bg-[#F5793B] text-white w-full">
+                                    <FaHome className="text-2xl"></FaHome>Go Home
+                                </button>
+                            </NavLink>
                         </ul>
                     </div>
 

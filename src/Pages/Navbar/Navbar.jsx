@@ -1,5 +1,5 @@
 import { NavLink, Link } from 'react-router-dom'
-import useAuth from '../../Hookes/useAuth';
+import useAuth from '../../Hooks/useAuth';
 // import Swal from 'sweetalert2';
 import { LuLogOut } from "react-icons/lu";
 
@@ -86,7 +86,7 @@ const Navbar = () => {
 
                                     </div>
                                 </label>
-                                <ul tabIndex={0} className="dropdown-content z-[10] menu px-5 mt-3 shadow bg-base-100 rounded-box py-5">
+                                <ul tabIndex={0} className="dropdown-content z-[10] menu px-5 mt-3 shadow bg-base-100 rounded-box py-5 w-56">
                                     <div className='flex flex-col justify-center items-center mb-4'>
                                         <label tabIndex={0} className="btn btn-circle avatar">
                                             <div className="w-16 rounded-full">
@@ -96,7 +96,7 @@ const Navbar = () => {
                                         </label>
                                         <h2 className='text-lg font-bold'>{user.displayName}</h2>
                                         <h2>{user.email}</h2>
-                                        <Link to='/signIn'>
+                                        <Link to='/dashboard/userProfile'>
                                 <button className="btn lg:btn-sm btn-xs bg-[#F5793B] hover:bg-[#F5793B] hover:border-[#F5793B] text-white mt-2">View Profile</button>
                             </Link>
                                     </div>

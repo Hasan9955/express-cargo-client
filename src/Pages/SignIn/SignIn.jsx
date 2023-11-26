@@ -4,10 +4,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook, FaGithub } from "react-icons/fa";
-import useAuth from '../../Hookes/useAuth';
+import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
-import useAxiosPublic from '../../Hookes/useAxiosPublic';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 
 const SignIn = () => {

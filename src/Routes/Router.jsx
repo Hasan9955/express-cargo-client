@@ -8,6 +8,9 @@ import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp"; 
 import PrivateRoutes from "./PrivateRoutes";
 import Dashboard from "../Layout/Dashboard";
+import UserProfile from "../Pages/Dashboard/userProfile/UserProfile";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import BookParcel from "../Pages/Dashboard/BookParcel/BookParcel";
 
 const router = createBrowserRouter([
     {
@@ -31,7 +34,21 @@ const router = createBrowserRouter([
     },
     {
       path: "dashboard",
-      element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>
+      element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
+      children: [
+        {
+          path: "userProfile",
+          element: <UserProfile></UserProfile>
+        },
+        {
+          path: "allUser",
+          element: <AllUsers></AllUsers>
+        },
+        {
+          path: "bookParcel",
+          element: <BookParcel></BookParcel>
+        }
+      ]
     }
   ]);
 

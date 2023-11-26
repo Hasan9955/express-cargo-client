@@ -1,11 +1,11 @@
 
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook, FaGithub } from "react-icons/fa";
-import useAuth from '../../Hookes/useAuth';
+import useAuth from '../../Hooks/useAuth';
 import { useForm } from 'react-hook-form';
-import useAxiosPublic from '../../Hookes/useAxiosPublic';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 
@@ -18,8 +18,7 @@ const SignUp = () => {
     const { createUser, googleSign, updateUser } = useAuth();
 
     const axiosPublic = useAxiosPublic();
-    const navigate = useNavigate();
-    const location = useLocation();
+    const navigate = useNavigate(); 
 
 
     const { handleSubmit, formState: { errors }, register, reset } = useForm();
@@ -27,7 +26,7 @@ const SignUp = () => {
 
 
     const onSubmit = async (data) => { 
-        const imageFile = {image: data.photo[0]}
+        const imageFile = {image: data.photo[0]} 
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: {
                 'content-type' : 'multipart/form-data' 
@@ -51,18 +50,12 @@ const SignUp = () => {
                         if(res.data.insertedId){
                             navigate("/")
                             Swal.fire({
-                                title: "Sign up successful!",
-                                text: "Please reload the page for a beater experience",
+                                position: "top-end",
                                 icon: "success",
-                                showCancelButton: true,
-                                confirmButtonColor: "#F5793B",
-                                cancelButtonColor: "#d33",
-                                confirmButtonText: "Reload"
-                              }).then((result) => {
-                                if (result.isConfirmed) {
-                                  location.reload();
-                                }
-                              });
+                                title: "Sign up successfully!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
                         }
                       })
                     })

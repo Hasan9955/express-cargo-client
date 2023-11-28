@@ -1,9 +1,7 @@
 
 
 
-const AllUsers = () => {
-
-    
+const AllParcels = () => {
     return (
         <div>
             
@@ -11,4 +9,4 @@ const AllUsers = () => {
     );
 };
 
-export default AllUsers;
+export default AllParcels;

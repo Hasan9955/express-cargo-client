@@ -1,7 +1,7 @@
 
 
 
-const UserHome = () => {
+const AllDeliverer = () => {
     return (
         <div>
             
@@ -9,4 +9,4 @@ const UserHome = () => {
     );
 };
 
-export default UserHome;
+export default AllDeliverer;

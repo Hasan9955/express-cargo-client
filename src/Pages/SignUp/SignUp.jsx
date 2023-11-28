@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 
 
@@ -16,6 +17,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${i
 const SignUp = () => {
 
     const { createUser, googleSign, updateUser } = useAuth();
+    const [btnLoading, setBtnLoading] = useState(false);
 
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate(); 
@@ -26,6 +28,7 @@ const SignUp = () => {
 
 
     const onSubmit = async (data) => { 
+        setBtnLoading(true)
         const imageFile = {image: data.photo[0]} 
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: {
@@ -48,6 +51,7 @@ const SignUp = () => {
                       axiosPublic.post('/users', userDetails)
                       .then(res => { 
                         if(res.data.insertedId){
+                            setBtnLoading(false)
                             navigate("/")
                             Swal.fire({
                                 position: "top-end",
@@ -68,6 +72,7 @@ const SignUp = () => {
                     text: "This email is already registered!", 
                   });
                   reset();
+                  setBtnLoading(false)
             })
         }
         
@@ -131,14 +136,14 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input className="input input-bordered" {...register("email", { required: true })} />
+                                <input type='email' className="input input-bordered" {...register("email", { required: true })} />
                                 {errors.email?.type === "required" && (<p className='text-red-600 font-bold text-center' role="alert">Email is required !!!</p>)}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input className="input input-bordered" {...register("password", { required: true, pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8}$/  })} />
+                                <input type='password' className="input  input-bordered" {...register("password", { required: true, pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8}$/  })} />
                                 {errors.password?.type === "required" && (<p className='text-red-600 font-bold text-center' role="alert">Password is required !!!</p>)}
                                 {errors.password?.type === 'pattern' && (<ul className="text-red-500 list-disc text-sm font-semibold mt-2 ml-4">
                                     <li>Ensure the length is exactly 8 characters.</li>
@@ -148,7 +153,10 @@ const SignUp = () => {
                                 </ul>)}
                             </div>
                             <div className="form-control mt-2">
+                                {
+                                    btnLoading ? <span className="loading loading-bars loading-lg w-8 mx-auto"></span> : 
                                 <button className="btn bg-gradient-to-r from-[#F5793B] to-[#db7f1c] hover:from-[#db7f1c] hover:to-[#F5793B] text-white">Sign Up</button>
+                                }
                             </div>
                         </form>
                         <div className='text-center'>

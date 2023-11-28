@@ -11,22 +11,23 @@ import useDeliverer from "../Hooks/useDeliverer";
 const Drawer = () => {
 
     const { user } = useAuth();
-    const [isAdmin] = useAdmin();
+    // const [isAdmin] = useAdmin();
+    const isAdmin = true;
     const [isDeliverer] = useDeliverer(); 
 
     return (
         <div>
-            <div className="drawer lg:drawer-open">
+            <div className="drawer lg:drawer-open z-[30] min-h-screen h-full">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
-                    <label htmlFor="my-drawer-2" className="btn btn-square btn-ghost  drawer-button lg:hidden">
+                    <label htmlFor="my-drawer-2" className="absolute btn btn-square left-2 top-2  drawer-button lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </label>
 
                 </div>
-                <div className="drawer-side">
+                <div className="drawer-side min-h-screen h-full">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <div className="w-56 pt-5 md:px-2 min-h-screen border-2 shadow-xl bg-white">
+                    <div className="w-56 pt-5 min-h-screen h-full md:px-2 shadow-xl bg-white">
                         <Link to="/">
                             <img className='mb-8 w-48 mx-auto md:w-56' src="https://i.ibb.co/my8y07y/Screenshot-2023-11-25-141635.png" alt="" />
                         </Link>
@@ -41,17 +42,17 @@ const Drawer = () => {
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/manageItems'>
+                                        <NavLink to='/dashboard/allParcels'>
                                             <FaList className="text-2xl"></FaList> All Parcels
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/manageBookings'>
+                                        <NavLink to='/dashboard/allDeliverers'>
                                             <MdDeliveryDining className="text-2xl"></MdDeliveryDining> All  Delivery Men
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/users'>
+                                        <NavLink to='/dashboard/allUsers'>
                                             <FaUsers className="text-2xl"></FaUsers> all users
                                         </NavLink>
                                     </li>
@@ -100,7 +101,7 @@ const Drawer = () => {
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/deliveryList'>
+                                        <NavLink to='/dashboard/myParcels'>
                                             <FaBox className="text-2xl"></FaBox > My Parcels
                                         </NavLink>
                                     </li>

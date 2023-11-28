@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
-import useAuth from "../../../Hooks/useAuth";
-import 'react-phone-input-2/lib/style.css'
+import useAuth from "../../../Hooks/useAuth"; 
 import moment from "moment";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
@@ -10,7 +9,7 @@ const BookParcel = () => {
     const { user } = useAuth();
     const weightRef = useRef();
     const [price, setPrice] = useState(0);
-    const date = moment().format('MMMM Do YYYY');
+    const date = moment().format('YYYY-D-MM'); 
     const axiosPublic = useAxiosPublic();
     
 
@@ -19,7 +18,7 @@ const BookParcel = () => {
         const form = e.target;
         const senderName = form.name.value;
         const email = form.email.value;
-        const customer = form.yourNum.value;
+        const senderPhone = form.yourNum.value;
         const parcelType = form.type.value;
         const weight = form.weight.value;
         const receiverName = form.receiverName.value;
@@ -31,7 +30,7 @@ const BookParcel = () => {
         const longitude = form.longitude.value;
         const status = 'pending'
         const bookingInfo = {
-            senderName, email, customer, parcelType, weight, price, receiverName, receiverPhone, deliveryAddress, reqDeliveryDate, bookingDate, latitude, longitude, status
+            senderName, email, senderPhone, parcelType, weight, price, receiverName, receiverPhone, deliveryAddress, reqDeliveryDate, bookingDate, latitude, longitude, status
         }
         
         axiosPublic.post('/bookings', bookingInfo)
@@ -73,7 +72,7 @@ const BookParcel = () => {
 
     return (
         <div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-5">
 
                 <form onSubmit={handleForm} className="bg-orange-400 w-full lg:w-3/4 md:mx-4 mx-2 p-5 my-10 rounded-lg">
                     <h2 className="text-3xl font-bold text-black text-center">Book a Parcel</h2>

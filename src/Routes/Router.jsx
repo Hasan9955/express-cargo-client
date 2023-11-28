@@ -8,9 +8,14 @@ import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp"; 
 import PrivateRoutes from "./PrivateRoutes";
 import Dashboard from "../Layout/Dashboard";
-import UserProfile from "../Pages/Dashboard/userProfile/UserProfile";
-import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import UserProfile from "../Pages/Dashboard/userProfile/UserProfile"; 
 import BookParcel from "../Pages/Dashboard/BookParcel/BookParcel";
+import MyParcels from "../Pages/Dashboard/MyParcels/MyParcels";
+import UpdateParcel from "../Pages/Dashboard/UpdateParcel/UpdateParcel";
+import AdminHome from "../Pages/Dashboard/Admin Pages/AdminHome";
+import AllUsers from "../Pages/Dashboard/Admin Pages/AllUsers";
+import AllDeliverer from "../Pages/Dashboard/Admin Pages/AllDeliverer";
+import AllParcels from "../Pages/Dashboard/Admin Pages/AllParcels";
 
 const router = createBrowserRouter([
     {
@@ -41,12 +46,36 @@ const router = createBrowserRouter([
           element: <UserProfile></UserProfile>
         },
         {
-          path: "allUser",
+          path: "bookParcel",
+          element: <BookParcel></BookParcel>
+        },
+        {
+          path: 'myParcels',
+          element: <MyParcels></MyParcels>
+        }, 
+        {
+          path: 'updateParcel/:id',
+          element: <UpdateParcel></UpdateParcel>,
+          loader: ({params}) => fetch(`http://localhost:5000/updateParcel/${params.id}`)
+        },
+
+
+        // only admin routes
+        {
+          path: 'adminHome',
+          element: <AdminHome></AdminHome>
+        },
+        {
+          path: 'allUsers',
           element: <AllUsers></AllUsers>
         },
         {
-          path: "bookParcel",
-          element: <BookParcel></BookParcel>
+          path: 'allDeliverers',
+          element: <AllDeliverer></AllDeliverer>
+        },
+        {
+          path: 'allParcels',
+          element: <AllParcels></AllParcels>
         }
       ]
     }

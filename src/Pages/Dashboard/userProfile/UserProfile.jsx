@@ -51,17 +51,17 @@ const UserProfile = () => {
 
 
     return (
-        <div className="p-3 md:p-10">
-            <h1 className="text-2xl md:text-3xl font-bold text-center my-5">Hi {user.displayName}, Welcome Back!</h1>
-            <div className="flex flex-col md:flex-row justify-center items-center gap-5 md:gap-10">
+        <div className="p-3 md:p-10 mt-10">
+            <h1 className="text-2xl md:text-3xl font-bold my-5 text-center md:text-start">Hi {user.displayName}, Welcome Back!</h1>
+            <div className="flex flex-col md:flex-row items-center gap-5 md:gap-10">
                 <div className="avatar">
-                    <div className="w-56 rounded-full ring  ring-offset-base-100 z-[-5] ring-offset-2">
+                    <div className="w-40 md:w-56 rounded-full ring  ring-offset-base-100 z-[-5] ring-offset-2">
                         <img src={user.photoURL} />
                     </div>
                 </div>
                 <div className="flex justify-center md:items-start items-center flex-col">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-2">{user.displayName}</h2>
-                    <p className="text-xl font-bold">{user.email}</p>
+                    <h2 className="text-2xl md:text-4xl font-bold mb-2">{user.displayName}</h2>
+                    <p className="md:text-xl font-bold">{user.email}</p>
 
 
                     {/* MODAL */}

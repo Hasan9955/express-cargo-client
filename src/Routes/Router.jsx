@@ -16,6 +16,10 @@ import AdminHome from "../Pages/Dashboard/Admin Pages/AdminHome";
 import AllUsers from "../Pages/Dashboard/Admin Pages/AllUsers";
 import AllDeliverer from "../Pages/Dashboard/Admin Pages/AllDeliverer";
 import AllParcels from "../Pages/Dashboard/Admin Pages/AllParcels";
+import AdminRoute from "./AdminRoute";
+import SelectDeliverer from "../Pages/Dashboard/Admin Pages/SelectDeliverer";
+import DeliveryList from "../Pages/Dashboard/DeliveryManHome/DeliveryList";
+import MyReviews from "../Pages/Dashboard/DeliveryManHome/MyReviews";
 
 const router = createBrowserRouter([
     {
@@ -63,19 +67,36 @@ const router = createBrowserRouter([
         // only admin routes
         {
           path: 'adminHome',
-          element: <AdminHome></AdminHome>
+          element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
         },
         {
           path: 'allUsers',
-          element: <AllUsers></AllUsers>
+          element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
         },
         {
           path: 'allDeliverers',
-          element: <AllDeliverer></AllDeliverer>
+          element: <AdminRoute><AllDeliverer></AllDeliverer></AdminRoute>
         },
         {
           path: 'allParcels',
-          element: <AllParcels></AllParcels>
+          element: <AdminRoute><AllParcels></AllParcels></AdminRoute>
+        },
+        {
+          path: 'selectDeliverer/:id',
+          element: <AdminRoute><SelectDeliverer></SelectDeliverer></AdminRoute>,
+          loader: ({params}) => fetch(`http://localhost:5000/updateParcel/${params.id}`)
+        },
+
+
+
+        // only fo delivery man
+        {
+          path: 'deliveryList',
+          element: <DeliveryList></DeliveryList>
+        },
+        {
+          path: 'reviewList',
+          element: <MyReviews></MyReviews>
         }
       ]
     }

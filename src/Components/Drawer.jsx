@@ -11,8 +11,7 @@ import useDeliverer from "../Hooks/useDeliverer";
 const Drawer = () => {
 
     const { user } = useAuth();
-    // const [isAdmin] = useAdmin();
-    const isAdmin = true;
+    const [isAdmin] = useAdmin(); 
     const [isDeliverer] = useDeliverer(); 
 
     return (

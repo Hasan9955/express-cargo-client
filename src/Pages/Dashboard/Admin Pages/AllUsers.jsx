@@ -1,42 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";  
-import { MdErrorOutline, MdDeliveryDining, MdAdminPanelSettings  } from "react-icons/md"; 
-import Swal from "sweetalert2";
-import '../../../Components/Pending.css'
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { MdErrorOutline, MdDeliveryDining, MdAdminPanelSettings } from "react-icons/md";
+import Swal from "sweetalert2"; 
 import CountBookings from "./CountBookings";
+import PendingStatus from "../../../Components/PendingStatus";
 
 
 const AllUsers = () => {
 
     const axiosSecure = useAxiosSecure();
 
-    
-    const {isPending, data: users = [], refetch} = useQuery({
+
+    const { isPending, data: users = [], refetch } = useQuery({
         queryKey: ['allUsers'],
-        queryFn: async () =>{
+        queryFn: async () => {
             const res = await axiosSecure.get('/users')
             return res.data
         }
     })
 
     if (isPending) {
-        return <div className="flex justify-center items-center mt-10">
-            <div>
-                <div className="animated-background">
-                    <div className="background-masker btn-divide-left"></div>
-                </div>
-                <div className="grid mt-10 gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 ">
-                    <div className="css-dom"></div>
-                    <div className="css-dom"></div>
-                    <div className="css-dom"></div>
-                    <div className="css-dom"></div>
-                    <div className="css-dom hidden xl:flex lg:flex"></div>
-                    <div className="css-dom hidden xl:flex lg:flex"></div>
-                    <div className="css-dom hidden xl:flex"></div>
-                    <div className="css-dom hidden xl:flex"></div>
-                </div>
-            </div>
-        </div>
+        return <PendingStatus></PendingStatus>
     }
 
     const handleDelete = (id) => {
@@ -51,7 +35,7 @@ const AllUsers = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/users/${id}`)
-                    .then(res => { 
+                    .then(res => {
                         if (res.data.acknowledged) {
                             Swal.fire({
                                 position: "center",
@@ -59,17 +43,17 @@ const AllUsers = () => {
                                 title: "Deleted successfully",
                                 showConfirmButton: false,
                                 timer: 1500
-                            }); 
+                            });
                             refetch();
                         }
                     })
             }
         });
-    } 
+    }
 
 
     const makeDeliverer = (id) => {
-        const upInfo = {role: 'deliverer'}
+        const upInfo = { role: 'deliverer' }
         Swal.fire({
             title: "Are you sure?",
             text: "You want to make this man deliverer?",
@@ -81,7 +65,7 @@ const AllUsers = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.put(`/users/${id}`, upInfo)
-                    .then(res => { 
+                    .then(res => {
                         if (res.data.modifiedCount) {
                             Swal.fire({
                                 position: "center",
@@ -89,7 +73,7 @@ const AllUsers = () => {
                                 title: "Make deliverer successfully!",
                                 showConfirmButton: false,
                                 timer: 1500
-                            }); 
+                            });
                             refetch();
                         }
                     })
@@ -99,7 +83,7 @@ const AllUsers = () => {
 
 
     const makeAdmin = (id) => {
-        const upInfo = {role: 'admin'} 
+        const upInfo = { role: 'admin' }
         Swal.fire({
             title: "Are you sure?",
             text: "You want to make him admin?",
@@ -111,7 +95,7 @@ const AllUsers = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.put(`/users/${id}`, upInfo)
-                    .then(res => { 
+                    .then(res => {
                         if (res.data.modifiedCount) {
                             Swal.fire({
                                 position: "center",
@@ -119,7 +103,7 @@ const AllUsers = () => {
                                 title: "Make Admin successfully!",
                                 showConfirmButton: false,
                                 timer: 1500
-                            }); 
+                            });
                             refetch();
                         }
                     })
@@ -128,63 +112,63 @@ const AllUsers = () => {
     }
     return (
         <div>
-                <h2 className="text-2xl md:text-4xl  font-extrabold text-center mt-10 mb-5">Total Users: {users?.length} </h2>
-                <div className="overflow-x-auto">
-                    <table className="table table-zebra w-full">
-                        <thead>
-                            <tr className="uppercase">
-                                <th className="hidden md:flex">#</th>
-                                <th>User Details</th>
-                                <th>Make deliverer</th>
-                                <th>Make admin</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                users?.map((user, ind) => <tr key={user._id}>
-                                    <th className="hidden md:flex">{ind + 1}</th>
-                                    <td>
-                                        <p>Name: {user.name}</p>
-                                        <p>Email: {user.email}</p>
-                                        <CountBookings email={user.email}></CountBookings> 
-                                    </td>
-                                    <td>
-                                        {
-                                            user.role === 'deliverer' ? <p className="uppercase btn btn-xs no-animation text-[#F5793B] font-bold text-md">{user.role}</p> : <div>
-                                                <button onClick={() => makeDeliverer(user._id)} className="btn bg-[#F5793B] text-white ">
-                                                    <MdDeliveryDining  className="text-3xl">
-                                                    </MdDeliveryDining >  
-                                                </button><br />
-                                            </div>
-                                        }
-                                    </td>
+            <h2 className="text-2xl md:text-4xl  font-extrabold text-center mt-10 mb-5">Total Users: {users?.length} </h2>
+            <div className="overflow-x-auto">
+                <table className="table table-zebra w-full">
+                    <thead>
+                        <tr className="uppercase">
+                            <th className="hidden md:flex">#</th>
+                            <th>User Details</th>
+                            <th>Make deliverer</th>
+                            <th>Make admin</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            users?.map((user, ind) => <tr key={user._id}>
+                                <th className="hidden md:flex">{ind + 1}</th>
+                                <td>
+                                    <p>Name: {user.name}</p>
+                                    <p>Email: {user.email}</p>
+                                    <CountBookings email={user.email}></CountBookings>
+                                </td>
+                                <td>
+                                    {
+                                        user.role === 'deliverer' ? <p className="uppercase btn btn-xs no-animation text-[#F5793B] font-bold text-md">{user.role}</p> : <div>
+                                            <button onClick={() => makeDeliverer(user._id)} className="btn bg-[#F5793B] text-white ">
+                                                <MdDeliveryDining className="text-3xl">
+                                                </MdDeliveryDining >
+                                            </button><br />
+                                        </div>
+                                    }
+                                </td>
 
-                                    <td>
-                                        {
-                                            user.role === 'admin' ? <p className="uppercase btn btn-xs no-animation text-green-600 font-bold text-md">{user.role}</p> : <div>
-                                                <button onClick={() => makeAdmin(user._id)} className="btn btn-success text-white ">
-                                                    <MdAdminPanelSettings  className="text-3xl">
-                                                    </MdAdminPanelSettings >  
-                                                </button><br />
-                                            </div>
-                                        }
-                                    </td>
-    
-                                    
-                                    <td>
-                                        <button  onClick={() => handleDelete(user._id)} className="btn btn-error text-white ">
-                                            <MdErrorOutline className="text-lg">
-                                            </MdErrorOutline > Delete
-                                        </button>
-                                    </td>
-                                </tr>)
-                            }
-    
-                        </tbody>
-                    </table>
-                </div>
+                                <td>
+                                    {
+                                        user.role === 'admin' ? <p className="uppercase btn btn-xs no-animation text-green-600 font-bold text-md">{user.role}</p> : <div>
+                                            <button onClick={() => makeAdmin(user._id)} className="btn btn-success text-white ">
+                                                <MdAdminPanelSettings className="text-3xl">
+                                                </MdAdminPanelSettings >
+                                            </button><br />
+                                        </div>
+                                    }
+                                </td>
+
+
+                                <td>
+                                    <button onClick={() => handleDelete(user._id)} className="btn btn-error text-white ">
+                                        <MdErrorOutline className="text-lg">
+                                        </MdErrorOutline > Delete
+                                    </button>
+                                </td>
+                            </tr>)
+                        }
+
+                    </tbody>
+                </table>
             </div>
+        </div>
     );
 };
 

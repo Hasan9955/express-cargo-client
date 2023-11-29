@@ -20,6 +20,8 @@ import AdminRoute from "./AdminRoute";
 import SelectDeliverer from "../Pages/Dashboard/Admin Pages/SelectDeliverer";
 import DeliveryList from "../Pages/Dashboard/DeliveryManHome/DeliveryList";
 import MyReviews from "../Pages/Dashboard/DeliveryManHome/MyReviews";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import SuccessPage from "../Pages/Dashboard/Payment/SuccessPage";
 
 const router = createBrowserRouter([
     {
@@ -60,6 +62,16 @@ const router = createBrowserRouter([
         {
           path: 'updateParcel/:id',
           element: <UpdateParcel></UpdateParcel>,
+          loader: ({params}) => fetch(`http://localhost:5000/updateParcel/${params.id}`)
+        },
+        {
+          path: 'payment/:id',
+          element: <Payment></Payment>,
+          loader: ({params}) => fetch(`http://localhost:5000/updateParcel/${params.id}`)
+        },
+        {
+          path: 'success/:id',
+          element: <SuccessPage></SuccessPage>,
           loader: ({params}) => fetch(`http://localhost:5000/updateParcel/${params.id}`)
         },
 

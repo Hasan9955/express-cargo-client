@@ -83,7 +83,7 @@ const MyParcels = () => {
         {
             bookings.length > 0 ? 
             <div>
-                <h2 className="text-2xl md:text-4xl  font-extrabold text-center mt-10 mb-5">Your have total {bookings?.length} parcels!</h2>
+                <h2 className="text-2xl md:text-4xl  font-extrabold text-center mt-10 mb-5">You have total {bookings?.length} parcels!</h2>
                 <div className="overflow-x-auto">
                     <table className="table table-zebra w-full">
                         <thead>
@@ -120,10 +120,13 @@ const MyParcels = () => {
                                                 </button><br />
                                             </div>
                                         }
-                                        <button onClick={() => handlePayment(booking._id)} className="btn btn-xs btn-primary text-white mt-1 w-24">
-                                            <MdOutlinePayment className=" ">
-                                            </MdOutlinePayment > Pay
+                                        {
+                                            booking.paymentStatus === 'paid' ?  <p className="uppercase btn btn-xs w-24 no-animation text-blue-600 font-bold text-md">{booking.paymentStatus}</p>
+                                            : <button className="btn btn-xs btn-primary text-white mt-1 w-24">
+                                            <Link className="flex justify-center items-center gap-2" to={`/dashboard/payment/${booking._id}`}><MdOutlinePayment className="text-lg">
+                                            </MdOutlinePayment > Pay</Link>
                                         </button>
+                                        }
                                     </td>
                                     <td>
                                         <button disabled={booking.status !== 'pending'} className="btn btn-xs btn-secondary text-white w-24">

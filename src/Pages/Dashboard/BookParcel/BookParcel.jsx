@@ -57,11 +57,8 @@ const BookParcel = () => {
         if (weight > 2) {
             setPrice(150)
         }
-        else if (weight === 1) {
-            setPrice(50)
-        }
-        else if (weight === 2) {
-            setPrice(100)
+        else if (weight >= 1) {
+            setPrice(50 * weight)
         } 
         else {
             setPrice(0)

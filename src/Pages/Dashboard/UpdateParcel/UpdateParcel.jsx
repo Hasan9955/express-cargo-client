@@ -14,10 +14,10 @@ const UpdateParcel = () => {
     const navigate = useNavigate();
 
     const data = useLoaderData();
-    const { _id, senderPhone, parcelType, weight, price, receiverName, receiverPhone, deliveryAddress, reqDeliveryDate, latitude, longitude } = data;
+    const { _id, senderPhone, parcelType, weight, price: prevPrice, receiverName, receiverPhone, deliveryAddress, reqDeliveryDate, latitude, longitude } = data;
     
     
-    const [upPrice, setPrice] = useState(price);
+    const [upPrice, setPrice] = useState(prevPrice);
     const handleForm = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -33,6 +33,7 @@ const UpdateParcel = () => {
         const bookingDate = date;
         const latitude = form.latitude.value;
         const longitude = form.longitude.value;
+        const price = upPrice;
         const status = 'pending'
         const bookingInfo = {
             senderName, email, senderPhone, parcelType, weight, price, receiverName, receiverPhone, deliveryAddress, reqDeliveryDate, bookingDate, latitude, longitude, status

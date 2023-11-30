@@ -29,8 +29,8 @@ const MyReviews = () => {
                 reviews.map(review => <div key={review._id}>
                     <div className="card bg-base-100 shadow-xl">
                     
-                        <figure className=" ">
-                            <img className=" rounded-xl" src={review.reviewerPhoto} alt="reviewer" />
+                        <figure>
+                            <img className="w-2/5 rounded-xl" src={review.reviewerPhoto} alt="reviewer" />
                         </figure>
                         <div className="card-body items-center text-center">
                             <h2 className="card-title">{review.reviewerName}</h2>

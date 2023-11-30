@@ -4,7 +4,7 @@ import useAuth from "../../../Hooks/useAuth";
 import PendingStatus from "../../../Components/PendingStatus";
 import { MdErrorOutline } from "react-icons/md";
 import { GrDeliver } from "react-icons/gr";
-import Swal from "sweetalert2";
+import Swal from "sweetalert2"; 
 
 
 
@@ -56,6 +56,15 @@ const DeliveryList = () => {
         });
     }
 
+    const handleMap = () =>{
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: 'Sorry...... this feature is not available right now!',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
 
     return (
         <div>
@@ -83,11 +92,11 @@ const DeliveryList = () => {
                                 </td>
                                 <td>
                                     <p>Requested Delivery Date: {parcel.reqDeliveryDate}</p>
-                                    <p>Approximate Delivery Date: {parcel.approximate}</p>
+                                    <p>Approximate Delivery Date: {parcel.approximate ? parcel.approximate : '2023-12-15'}</p>
                                     <p>Delivery Address: {parcel.deliveryAddress}</p>
                                 </td>
                                 <td>
-                                    <button className="btn btn-info text-white"> View map </button>
+                                    <button onClick={handleMap} className="btn btn-info text-white"> View map </button>
                                     {/* <p className="uppercase btn btn-xs no-animation text-green-600 font-bold text-md mt-2 w-24">{parcel.paymentStatus ? parcel.paymentStatus : 'unpaid'}</p> */}
                                 </td>
                                 <td>

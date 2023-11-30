@@ -83,7 +83,8 @@ const router = createBrowserRouter([
         },
         {
           path: 'allUsers',
-          element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+          element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
+          loader: () => fetch('http://localhost:5000/countUsers')
         },
         {
           path: 'allDeliverers',

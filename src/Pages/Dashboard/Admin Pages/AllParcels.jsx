@@ -56,19 +56,17 @@ const AllParcels = () => {
                                     <p>Booking Date: {parcel.bookingDate}</p>
                                     <p>Requested Delivery Date: {parcel.reqDeliveryDate}</p>
                                 </td>
-
                                 <td>
-                                    <p className="uppercase btn btn-xs no-animation text-blue-600 font-bold text-md">{parcel.status}</p>
+                                    {parcel.status === 'canceled' ? <p className="uppercase btn btn-xs no-animation text-red-600 font-bold text-md w-24">{parcel.status}</p> : <p className="uppercase btn btn-xs no-animation text-blue-600 font-bold text-md w-24">{parcel.status}</p>}<br />
+                                    <p className="uppercase btn btn-xs no-animation text-green-600 font-bold text-md mt-2 w-24">{parcel.paymentStatus ? parcel.paymentStatus : 'unpaid'}</p>
                                 </td>
-
-
                                 <td>
-                                        <button disabled={parcel.status !== 'pending'} className="btn btn-info text-white ">
-                                    <Link className="flex justify-center items-center gap-2" to={`/dashboard/selectDeliverer/${parcel._id}`}>
+                                    <button disabled={parcel.status === 'on the way' || parcel.status === 'delivered'} className="btn btn-info text-white ">
+                                        <Link className="flex justify-center items-center gap-2" to={`/dashboard/selectDeliverer/${parcel._id}`}>
                                             <FcManager className="text-lg">
                                             </FcManager > Manage
-                                    </Link>
-                                        </button>
+                                        </Link>
+                                    </button>
                                 </td>
                             </tr>)
                         }

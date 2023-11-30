@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 
 const image_hosting_key = import.meta.env.VITE_imageBB_api
-const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_key}`
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const UserProfile = () => {
     const { user, updateUser } = useAuth()
@@ -21,10 +21,10 @@ const UserProfile = () => {
             headers: {
                 'content-type': 'multipart/form-data'
             }
-        })
+        }) 
         if (res.data.success) {
             const name = data.name;
-            const photo = res.data.data.display_url;
+            const photo = res.data.data.url;
             updateUser(name, photo)
                 .then(() => {
                     location.reload();

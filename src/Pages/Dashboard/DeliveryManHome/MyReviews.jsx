@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
-import PendingStatus from "../../../Components/PendingStatus"; 
+import PendingStatus from "../../../Components/PendingStatus";
 import { Rating } from "@material-tailwind/react";
 
 const MyReviews = () => {
@@ -24,26 +24,30 @@ const MyReviews = () => {
 
 
     return (
-        <div className="grid gap-5 my-20 md:grid-cols-3">
-            {
-                reviews.map(review => <div key={review._id}>
-                    <div className="card bg-base-100 shadow-xl">
-                    
-                        <figure>
-                            <img className="w-2/5 rounded-xl" src={review.reviewerPhoto} alt="reviewer" />
-                        </figure>
-                        <div className="card-body items-center text-center">
-                            <h2 className="card-title">{review.reviewerName}</h2>
-                            <p>Review Giving Date: {review.reviewDate ? review.reviewDate : '2023-11-30'}</p>
-                            <Rating className="flex items-center justify-center" value={review.rating} readonly />
-                            <p>{review.review}</p>
-                            <div>
+        <>
+            <h2 className="text-4xl text-center my-10">Total reviews: {reviews?.length}</h2>
+            <div className="grid gap-5 my-20 md:grid-cols-3">
+                {
+                    reviews.map(review => <div key={review._id}>
+                        <div className="card bg-base-100 shadow-xl">
+
+                            <figure>
+                                <img className="w-36 h-36 rounded-xl" src={review.reviewerPhoto} alt="reviewer" />
+                            </figure>
+                            <div className="card-body items-center text-center">
+                                <h2 className="card-title">{review.reviewerName}</h2>
+                                <p>Review Giving Date: {review.reviewDate ? review.reviewDate : '2023-11-30'}</p>
+                                <Rating className="flex items-center justify-center text-orange-500" value={review.rating} readonly />
+                                <p>{review.review}</p>
+                                <div>
                                 </div>
+                            </div>
                         </div>
-                    </div>
-                </div>)
-            }
-        </div>
+                    </div>)
+                }
+            </div>
+        </>
+
     );
 };
 

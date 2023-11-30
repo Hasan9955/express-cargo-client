@@ -1,8 +1,31 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Express Cargo.
+## Live link: https://express-cargo-f724b.web.app/
+## Project Features
 
-Currently, two official plugins are available:
+### 1. User Registration and Profiles:
+- User can easily register or login our website.
+- They have a profiles where they have a won booking list.
+### 2. Secure payment system:
+ - We have a secure payment system where user can easily pay.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ ### 3. Book Parcel: 
+ - Users can easily book parcel in our website.
+ - From navbar they can easily go booking form page.
+ ### 4. Update Parcel:
+ - User can update parcel before payment.
+ 
+
+ ### 5. User Profile:
+ - In our website every users have a profile and they can easily update their name and photo. 
+
+
+
+ ### 6. Customer Support:
+ - We have a best support team. Customer can get easily support and contact with us. 
+
+
+ ### 7. Responsive Design:
+ - The website is responsive and adapts to different screen sizes and devices for a seamless user experience.
+
+

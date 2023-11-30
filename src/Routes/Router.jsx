@@ -62,17 +62,17 @@ const router = createBrowserRouter([
         {
           path: 'updateParcel/:id',
           element: <UpdateParcel></UpdateParcel>,
-          loader: ({params}) => fetch(`http://localhost:5000/updateParcel/${params.id}`)
+          loader: ({params}) => fetch(`https://express-cargo-server.vercel.app/updateParcel/${params.id}`)
         },
         {
           path: 'payment/:id',
           element: <Payment></Payment>,
-          loader: ({params}) => fetch(`http://localhost:5000/updateParcel/${params.id}`)
+          loader: ({params}) => fetch(`https://express-cargo-server.vercel.app/updateParcel/${params.id}`)
         },
         {
           path: 'success/:id',
           element: <SuccessPage></SuccessPage>,
-          loader: ({params}) => fetch(`http://localhost:5000/updateParcel/${params.id}`)
+          loader: ({params}) => fetch(`https://express-cargo-server.vercel.app/updateParcel/${params.id}`)
         },
 
 
@@ -84,7 +84,7 @@ const router = createBrowserRouter([
         {
           path: 'allUsers',
           element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
-          loader: () => fetch('http://localhost:5000/countUsers')
+          loader: () => fetch('https://express-cargo-server.vercel.app/countUsers')
         },
         {
           path: 'allDeliverers',
@@ -97,7 +97,7 @@ const router = createBrowserRouter([
         {
           path: 'selectDeliverer/:id',
           element: <AdminRoute><SelectDeliverer></SelectDeliverer></AdminRoute>,
-          loader: ({params}) => fetch(`http://localhost:5000/updateParcel/${params.id}`)
+          loader: ({params}) => fetch(`https://express-cargo-server.vercel.app/updateParcel/${params.id}`)
         },
 
 

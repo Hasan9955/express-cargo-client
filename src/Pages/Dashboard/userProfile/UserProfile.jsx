@@ -24,7 +24,7 @@ const UserProfile = () => {
         }) 
         if (res.data.success) {
             const name = data.name;
-            const photo = res.data.data.url;
+            const photo = res.data.data.display_url;
             updateUser(name, photo)
                 .then(() => {
                     location.reload();

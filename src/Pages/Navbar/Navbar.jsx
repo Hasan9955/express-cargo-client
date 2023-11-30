@@ -1,14 +1,17 @@
 import { NavLink, Link } from 'react-router-dom'
 import useAuth from '../../Hooks/useAuth';
 // import Swal from 'sweetalert2';
-import { LuLogOut } from "react-icons/lu";
+import { LuLogOut } from "react-icons/lu"; 
+import useAdmin from '../../Hooks/useAdmin';
+import { toast } from 'react-toastify';
 
 
 
 const Navbar = () => {
 
 
-    const { user, logOut } = useAuth();
+    const { user, logOut } = useAuth(); 
+    const [isAdmin] = useAdmin();
 
     const handleLogOut = () => {
         logOut()
@@ -29,19 +32,15 @@ const Navbar = () => {
                 color: isActive && '#fff',
                 background: isActive && '#F5793B',
             })}
-        >Home</NavLink></li>
-        <li><NavLink to="/service"
-            style={({ isActive }) => ({
-                color: isActive && '#fff',
-                background: isActive && '#F5793B',
-            })}
-        >Services</NavLink></li>
-        <li><NavLink to="/dashboard"
-            style={({ isActive }) => ({
-                color: isActive && '#fff',
-                background: isActive && '#F5793B',
-            })}
-        >Dashboard</NavLink></li>
+        >HOME</NavLink></li> 
+
+        {
+            user && isAdmin && <li><NavLink to="/dashboard/adminHome" style={({ isActive }) => ({ color: isActive && '#fff', background: isActive && '#F5793B', })} >DASHBOARD</NavLink></li>
+        }
+        {
+            user && !isAdmin && <li><NavLink to="/dashboard/userProfile" style={({ isActive }) => ({ color: isActive && '#fff', background: isActive && '#F5793B', })} >DASHBOARD</NavLink></li>
+        }
+
 
     </>
     return (
@@ -71,12 +70,11 @@ const Navbar = () => {
 
 
                 <div className=' flex justify-center items-center '>
-                    <Link to='/dashboard/cart'>
-                        <button className="mr-7 btn lg:btn-md btn-sm btn-circle relative">
+                    <button onClick={() => toast.error('Sorry this feature is not available!')} className="mr-7 btn lg:btn-md btn-sm btn-circle relative">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-                            <div className="badge p-1 bg-[#F5793B] text-white absolute -top-1 -right-4 text-[12px] w-6">+{18}</div>
+                            <div className="badge p-1 bg-[#F5793B] text-white absolute -top-1 -right-4 text-[12px] w-6"> </div>
                         </button>
-                    </Link>
+                    
                     {
                         user ? <div className='flex items-center'>
                             <div className="dropdown dropdown-hover dropdown-end">
@@ -97,10 +95,16 @@ const Navbar = () => {
                                         <h2 className='text-lg font-bold'>{user.displayName}</h2>
                                         <h2>{user.email}</h2>
                                         <Link to='/dashboard/userProfile'>
-                                <button className="btn lg:btn-sm btn-xs bg-[#F5793B] hover:bg-[#F5793B] hover:border-[#F5793B] text-white mt-2">View Profile</button>
-                            </Link>
+                                            <button className="btn lg:btn-sm btn-xs bg-[#F5793B] hover:bg-[#F5793B] hover:border-[#F5793B] text-white mt-2">View Profile</button>
+                                        </Link>
                                     </div>
-                                    <li><NavLink className="font-bold" to='/dashboard'>Dashboard</NavLink></li>
+                                    {
+                                        user && isAdmin && <li><NavLink className="font-bold" to='/dashboard/adminHome'>Dashboard</NavLink></li>
+                                    }
+                                    {
+                                        user && !isAdmin && <li><NavLink className="font-bold" to='/dashboard/userProfile'>Dashboard</NavLink></li>
+                                    }
+
                                     <li><button className='font-bold text-md text-[#F5793B]' onClick={handleLogOut}>Logout <LuLogOut className='text-xl'></LuLogOut></button></li>
                                 </ul>
                             </div>

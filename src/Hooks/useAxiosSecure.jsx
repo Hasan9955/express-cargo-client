@@ -3,7 +3,7 @@ import useAuth from "./useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://express-cargo-server.vercel.app'
 })
 
 

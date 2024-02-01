@@ -21,7 +21,7 @@ import SelectDeliverer from "../Pages/Dashboard/Admin Pages/SelectDeliverer";
 import DeliveryList from "../Pages/Dashboard/DeliveryManHome/DeliveryList";
 import MyReviews from "../Pages/Dashboard/DeliveryManHome/MyReviews";
 import Payment from "../Pages/Dashboard/Payment/Payment";
-import SuccessPage from "../Pages/Dashboard/Payment/SuccessPage";
+import SuccessPage from "../Pages/Dashboard/Payment/SuccessPage"; 
 
 const router = createBrowserRouter([
     {
@@ -101,6 +101,7 @@ const router = createBrowserRouter([
         },
 
 
+        // https://express-cargo-server.vercel.app
 
         // only fo delivery man
         {

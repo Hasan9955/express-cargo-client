@@ -37,8 +37,7 @@ const Banner = () => {
 
 
     return (
-        <div>
-            <div className='w-full h-20'></div>
+        <div className='mt-10'> 
             <Swiper
                 spaceBetween={30}
                 effect={'fade'}
